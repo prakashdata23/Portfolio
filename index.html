@@ -2,127 +2,346 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="dark light">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sri Sai Prakash Iragavarapu · Azure Data Engineer</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600&display=swap">
+<title>Prakash Iragavarapu · Azure Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Space+Grotesque:wght@700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#0a0e14;--panel:#111826;--ink:#e8edf3;--mute:#8b98a9;--line:#1f2a3a;--bronze:#c98a5e;--silver:#9fb0c3;--gold:#d9ad4f;--gold-bg:#1d1a10;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-:root[data-theme="light"]{color-scheme:light;--bg:#eef1f4;--panel:#fff;--ink:#16202c;--mute:#5b6878;--line:#d3dae2;--bronze:#a8643c;--silver:#7c8896;--gold:#b97f0a;--gold-bg:#fbf0d4}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Figtree,system-ui,sans-serif}
-h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,system-ui,sans-serif;line-height:1.05;margin:0}
-a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;justify-content:space-between;align-items:center;padding:12px 5vw;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-nav b{font-family:'Bricolage Grotesque',sans-serif;font-size:19px}nav div{display:flex;gap:22px;align-items:center;font-size:15px}
-nav a{text-decoration:none;color:var(--mute)}nav a:hover{color:var(--ink)}
-#theme{background:none;border:1px solid var(--line);color:var(--ink);border-radius:20px;padding:4px 12px;cursor:pointer;font:inherit;font-size:14px}
+:root {
+  color-scheme: dark;
+  --bg: #080c14;
+  --panel: #0f172a;
+  --panel-border: #1e293b;
+  --ink: #f8fafc;
+  --mute: #94a3b8;
+  --cyan: #38bdf8;
+  --indigo: #818cf8;
+  --gold: #f59e0b;
+  --bronze: #f97316;
+  --silver: #38bdf8;
+  --title-gradient: linear-gradient(135deg, #ffffff 30%, #a5f3fc 70%, #38bdf8 100%);
+  --nav-title: #ffffff;
+  box-sizing: border-box;
+}
 
-.hero{position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:40px 5vw 20px;overflow:hidden}
-#flow{position:absolute;inset:0;width:100%;height:100%}
-.hero>*:not(canvas){position:relative;pointer-events:none}.hero a{pointer-events:auto}
-.hero-content{max-width:900px;margin-bottom:10px}
-.hero h1{font-size:clamp(40px,7.5vw,96px);font-weight:800;letter-spacing:-.035em;max-width:13ch;color:var(--ink);padding-bottom:.05em}
-.hero p{max-width:36em;font-size:clamp(17px,2vw,20px);color:var(--mute);margin:14px 0 20px}
-.hero .bar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px}
-.btn{display:inline-block;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:600;border:1px solid var(--line);transition:transform .2s}
-.btn.main{background:var(--gold);color:#16202c;border-color:var(--gold)}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --panel-border: #cbd5e1;
+  --ink: #0f172a;
+  --mute: #475569;
+  --cyan: #0284c7;
+  --indigo: #4f46e5;
+  --gold: #d97706;
+  --bronze: #ea580c;
+  --silver: #0284c7;
+  --title-gradient: linear-gradient(135deg, #0f172a 30%, #0369a1 70%, #0284c7 100%);
+  --nav-title: #0f172a;
+}
 
-.hero .stage{position:relative;width:100%;display:flex;justify-content:space-between;font-weight:600;font-size:14px;color:var(--mute);padding-top:12px;margin-top:20px;border-top:2px solid transparent;border-image:linear-gradient(90deg,var(--bronze),var(--silver),var(--gold)) 1}
-.hero .stage span:last-child{color:var(--gold)}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 16px/1.6 'Inter', system-ui, sans-serif;
+}
 
-.stats{display:flex;flex-wrap:wrap;gap:36px;padding:24px 5vw;border-block:1px solid var(--line)}
-.stats b{display:block;font:800 38px 'Bricolage Grotesque',sans-serif;color:var(--ink)}
-.stats span{color:var(--mute);font-size:14px}
-section{padding:60px 5vw;max-width:1180px;margin:auto}
-h2{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
-h2::after{content:"";display:block;width:48px;height:3px;margin-top:12px;background:var(--gold)}
-.lead{color:var(--mute);max-width:42em;margin:0 0 28px}
-.tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.tab{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:8px 18px;border-radius:8px;cursor:pointer;font:600 15px Figtree,sans-serif;border-left-width:6px;transition:border-color .2s}
-.tab[aria-selected=true]{background:var(--gold-bg);border-color:var(--gold)}
-.tab.bronze{border-left-color:var(--bronze)}.tab.silver{border-left-color:var(--silver)}.tab.gold{border-left-color:var(--gold)}
-.layer{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px}
-.layer p{margin:0 0 14px;color:var(--mute)}
-.chips{display:flex;flex-wrap:wrap;gap:8px}.chips span{padding:4px 12px;border:1px solid var(--line);border-radius:20px;font-size:13px;background:transparent;color:var(--mute)}
+h1, h2, h3 {
+  font-family: 'Space Grotesque', 'Inter', sans-serif;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
 
-.projects{display:grid;gap:16px}
-.proj{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;transition:border-color .3s}
-.proj::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold)}
-.proj:hover{border-color:color-mix(in srgb,var(--gold) 60%,var(--line))}
-.proj button.proj-head{all:unset;box-sizing:border-box;display:block;width:100%;padding:20px 24px;cursor:pointer}
-.proj button.proj-head:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
-.proj h3{font-size:20px;display:flex;justify-content:space-between;gap:16px}
-.proj h3::after{content:'+';color:var(--gold);transition:transform .25s}.proj.open h3::after{transform:rotate(45deg)}
-.proj .tag{color:var(--mute);margin:4px 0 12px}
-.more{display:none;padding:0 24px 24px}.proj.open .more{display:block}
-.more ul{margin:0 0 20px;padding-left:20px}.more li{margin-bottom:8px;color:var(--mute)}
+code, .code-font {
+  font-family: 'JetBrains Mono', monospace;
+}
 
-/* Large Vertical Image Stack */
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+
+/* Navigation */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 6vw;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--panel-border);
+}
+nav b { 
+  font-family: 'Space Grotesque', sans-serif;
+  font-size: 20px; 
+  font-weight: 700; 
+  color: var(--nav-title);
+}
+nav div { display: flex; gap: 24px; align-items: center; font-size: 15px; font-weight: 600; }
+nav a { text-decoration: none; color: var(--mute); transition: color .2s; }
+nav a:hover { color: var(--ink); }
+#theme {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  color: var(--ink);
+  border-radius: 20px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 60px 6vw 30px;
+  overflow: hidden;
+}
+#flow { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero > *:not(canvas) { position: relative; pointer-events: none; }
+.hero a { pointer-events: auto; }
+.hero-content { max-width: 900px; margin-bottom: 20px; }
+
+/* Dynamic Name Heading */
+.hero h1 {
+  font-family: 'Space Grotesque', 'Inter', sans-serif;
+  font-size: clamp(36px, 5.5vw, 68px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  background: var(--title-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+
+.hero p { max-width: 38em; font-size: clamp(16px, 1.8vw, 19px); color: var(--mute); margin: 16px 0 28px; }
+.hero .bar { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  color: var(--ink);
+  transition: all .2s ease;
+}
+.btn:hover { border-color: var(--cyan); transform: translateY(-2px); }
+.btn.main {
+  background: linear-gradient(135deg, #0284c7, #4f46e5);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.35);
+}
+.btn.main:hover { box-shadow: 0 6px 24px rgba(2, 132, 199, 0.5); }
+
+.hero .stage {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--mute);
+  padding-top: 16px;
+  margin-top: 40px;
+  border-top: 1px solid var(--panel-border);
+}
+.hero .stage span:nth-child(1) { color: var(--bronze); }
+.hero .stage span:nth-child(2) { color: var(--silver); }
+.hero .stage span:nth-child(3) { color: var(--gold); }
+
+/* Stats Bar */
+.stats { display: flex; flex-wrap: wrap; gap: 48px; padding: 32px 6vw; border-block: 1px solid var(--panel-border); background: var(--panel); }
+.stats b { display: block; font-size: 36px; font-weight: 800; color: var(--cyan); font-family: 'JetBrains Mono', monospace; }
+.stats span { color: var(--mute); font-size: 14px; font-weight: 500; }
+
+/* General Layout */
+section { padding: 80px 6vw; max-width: 1200px; margin: auto; }
+h2 { font-size: clamp(28px, 3.5vw, 40px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+h2::after { content: ""; display: block; width: 48px; height: 4px; margin-top: 12px; background: linear-gradient(90deg, var(--cyan), var(--indigo)); border-radius: 2px; }
+.lead { color: var(--mute); max-width: 42em; font-size: 17px; margin: 0 0 32px; }
+
+/* Tabs / Medallion Layers */
+.tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.tab {
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  color: var(--ink);
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all .2s;
+}
+.tab[aria-selected=true] { background: var(--panel-border); border-color: var(--cyan); color: var(--cyan); }
+.layer { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 12px; padding: 28px; }
+.layer p { margin: 0 0 18px; color: var(--mute); font-size: 16px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips span { padding: 5px 14px; border: 1px solid var(--panel-border); border-radius: 20px; font-size: 13px; font-weight: 600; background: rgba(0,0,0,0.03); color: var(--cyan); font-family: 'JetBrains Mono', monospace; }
+
+/* Project Cards */
+.projects { display: grid; gap: 20px; }
+.proj {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  transition: all .3s ease;
+}
+.proj::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--cyan), var(--indigo)); }
+.proj:hover { border-color: var(--cyan); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.proj button.proj-head { all: unset; box-sizing: border-box; display: block; width: 100%; padding: 24px 28px; cursor: pointer; }
+.proj h3 { font-size: 22px; font-weight: 700; display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+.proj h3::after { content: '+'; font-size: 24px; color: var(--cyan); transition: transform .25s; font-family: 'JetBrains Mono', monospace; }
+.proj.open h3::after { transform: rotate(45deg); }
+.proj .tag { color: var(--mute); margin: 6px 0 16px; font-size: 15px; }
+
+.more { display: none; padding: 0 28px 28px; }
+.proj.open .more { display: block; }
+.more ul { margin: 0 0 24px; padding-left: 20px; }
+.more li { margin-bottom: 10px; color: var(--mute); font-size: 15px; }
+
+/* Vertical Stacked Gallery & Video */
 .stacked-gallery {
   display: flex;
   flex-direction: column;
   gap: 24px;
   margin-top: 24px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--panel-border);
   padding-top: 24px;
 }
 .image-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 12px;
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 16px;
+  width: 100%;
 }
 .image-title {
   font-size: 15px;
-  font-weight: 600;
-  color: var(--gold);
-  padding-left: 4px;
+  font-weight: 700;
+  color: var(--cyan);
+  font-family: 'JetBrains Mono', monospace;
 }
 .image-item img {
   width: 100%;
   height: auto;
-  border-radius: 6px;
-  border: 1px solid var(--line);
+  border-radius: 8px;
+  border: 1px solid var(--panel-border);
   display: block;
-  background: #111;
+  background: #000;
 }
 
-.tl{border-left:2px solid var(--line);padding-left:22px;margin-left:6px}
-.job{margin-bottom:30px;position:relative}.job::before{content:"";position:absolute;left:-28px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
-.job h3{font-size:22px}.job small{color:var(--mute);display:block;margin:2px 0 10px}
-.job ul{margin:0;padding-left:20px}.job li{margin-bottom:6px;color:var(--mute)}
-.contact{text-align:center}.contact h2::after{margin-inline:auto}
-.contact .big{font:800 clamp(22px,4vw,40px)/1.1 'Bricolage Grotesque',sans-serif;display:block;margin:18px 0;word-break:break-word;color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:8px}
-.contact .bar{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-footer{text-align:center;color:var(--mute);font-size:14px;padding:24px 5vw 40px}
-@media (max-width:640px){nav div a{display:none}section{padding:48px 5vw}}
-body::before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(50vw 45vh at 88% 4%,color-mix(in srgb,var(--gold) 10%,transparent),transparent 70%),radial-gradient(45vw 45vh at 0% 100%,color-mix(in srgb,var(--silver) 7%,transparent),transparent 70%)}
-#glow{position:fixed;width:380px;height:380px;border-radius:50%;pointer-events:none;z-index:-1;left:-999px;top:-999px;transform:translate(-50%,-50%);background:radial-gradient(circle,color-mix(in srgb,var(--gold) 8%,transparent),transparent 65%)}
-.pill{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;background:color-mix(in srgb,var(--panel) 70%,transparent);backdrop-filter:blur(8px);font-size:13px;margin-bottom:14px}
-.pill i{width:8px;height:8px;border-radius:50%;background:#2fbf71;animation:pl 2s infinite}@keyframes pl{0%{box-shadow:0 0 0 0 #2fbf7199}70%,100%{box-shadow:0 0 0 10px transparent}}
-.mq{overflow:hidden;padding:16px 0;border-bottom:1px solid var(--line);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
-.mq div{display:flex;width:max-content;animation:mq 45s linear infinite}
-.mq span{font:600 18px 'Bricolage Grotesque',sans-serif;color:var(--mute);white-space:nowrap;padding-right:32px}
-@keyframes mq{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.mq div,.pill i{animation:none}}
+/* Responsive Embed Video Container */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--panel-border);
+  background: #000;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Timeline / Jobs */
+.tl { border-left: 2px solid var(--panel-border); padding-left: 28px; margin-left: 8px; }
+.job { margin-bottom: 36px; position: relative; }
+.job::before { content: ""; position: absolute; left: -34px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+.job h3 { font-size: 22px; font-weight: 700; }
+.job small { color: var(--mute); display: block; margin: 4px 0 12px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.job ul { margin: 0; padding-left: 20px; }
+.job li { margin-bottom: 8px; color: var(--mute); }
+
+/* Contact Section */
+.contact { text-align: center; }
+.contact h2::after { margin-inline: auto; }
+.contact .big {
+  font-size: clamp(24px, 4vw, 42px);
+  font-weight: 800;
+  display: block;
+  margin: 20px 0;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--cyan);
+  text-underline-offset: 8px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.contact .bar { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+footer { text-align: center; color: var(--mute); font-size: 14px; padding: 32px 6vw 48px; border-top: 1px solid var(--panel-border); }
+
+/* Background Glow */
+#glow { position: fixed; width: 400px; height: 400px; border-radius: 50%; pointer-events: none; z-index: -1; left: -999px; top: -999px; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(56,189,248,0.1), transparent 70%); }
+.pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border: 1px solid var(--panel-border); border-radius: 20px; background: var(--panel); font-size: 13px; font-weight: 600; margin-bottom: 20px; }
+.pill i { width: 8px; height: 8px; border-radius: 50%; background: #10b981; animation: pl 2s infinite; }
+@keyframes pl { 0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.6); } 70%, 100% { box-shadow: 0 0 0 10px transparent; } }
+
+/* Marquee Skills */
+.mq { overflow: hidden; padding: 18px 0; border-bottom: 1px solid var(--panel-border); background: var(--panel); -webkit-mask-image: linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent); mask-image: linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent); }
+.mq div { display: flex; width: max-content; animation: mq 40s linear infinite; }
+.mq span { font-size: 16px; font-weight: 700; color: var(--mute); white-space: nowrap; padding-right: 36px; font-family: 'JetBrains Mono', monospace; }
+@keyframes mq { to { transform: translateX(-50%); } }
 </style>
 </head>
 <body>
-<nav><b id="navName">Prakash</b><div><a href="#pipeline">Skills</a><a href="#work">Projects</a><a href="#path">Experience</a><a href="#contact">Contact</a><button id="theme" aria-label="Toggle theme">Theme</button></div></nav>
+
+<nav>
+  <b id="navName">Prakash Iragavarapu</b>
+  <div>
+    <a href="#pipeline">Skills</a>
+    <a href="#work">Projects</a>
+    <a href="#path">Experience</a>
+    <a href="#contact">Contact</a>
+    <button id="theme" aria-label="Toggle theme">Theme</button>
+  </div>
+</nav>
 
 <header class="hero">
-<canvas id="flow" aria-hidden="true"></canvas>
-<div class="hero-content">
-  <div class="pill"><i></i>Open to Data Engineering Roles</div>
-  <h1 id="hName">Sri Sai Prakash Iragavarapu</h1>
-  <p id="hTag">Azure Data Engineer with ~4 years of experience building scalable ETL, data pipelines, and analytics solutions using Databricks, ADF, SQL, and PySpark.</p>
-  <div class="bar"><a class="btn main" href="#work">See my pipelines</a><a class="btn" href="#contact">Contact me</a></div>
-</div>
-<div class="stage"><span>Bronze: raw</span><span>Silver: clean</span><span>Gold: ready</span></div>
+  <canvas id="flow" aria-hidden="true"></canvas>
+  <div class="hero-content">
+    <div class="pill"><i></i> Open for Data Engineering Roles</div>
+    <h1 id="hName">Prakash Iragavarapu</h1>
+    <p id="hTag">Azure Data Engineer with ~4 years of experience building scalable ETL, data pipelines, and analytics solutions using Databricks, ADF, SQL, and PySpark.</p>
+    <div class="bar">
+      <a class="btn main" href="#work">Explore Pipelines</a>
+      <a class="btn" href="#contact">Get in Touch</a>
+    </div>
+  </div>
+  <div class="stage">
+    <span>BRONZE: RAW INGESTION</span>
+    <span>SILVER: CLEANED & ENFORCED</span>
+    <span>GOLD: BUSINESS READY</span>
+  </div>
 </header>
 
 <div id="glow"></div>
@@ -130,147 +349,171 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;background:radial-grad
 <div class="mq" aria-hidden="true"><div id="mqi"></div></div>
 
 <section id="pipeline">
-<h2>Raw in, reliable out</h2>
-<p class="lead" id="pLead">The Medallion Architecture organizes my engineering workflow. Explore my technical stack across each processing layer:</p>
-<div class="tabs" role="tablist" id="tabs"></div>
-<div class="layer" id="layer" role="tabpanel"></div>
+  <h2>Raw In, Reliable Out</h2>
+  <p class="lead" id="pLead">The Medallion Architecture organizes my data engineering workflow. Explore my technical stack across processing layers:</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="layer" id="layer" role="tabpanel"></div>
 </section>
 
 <section id="work">
-<h2>Featured Projects</h2>
-<p class="lead">End-to-end cloud platforms engineered with batch and real-time streaming capabilities. Click any project to review architecture highlights.</p>
-<div class="projects" id="projects"></div>
+  <h2>Featured Projects</h2>
+  <p class="lead">End-to-end cloud data platforms engineered for high throughput, real-time streaming, and enterprise analytics. Click any project to expand.</p>
+  <div class="projects" id="projects"></div>
 </section>
 
 <section id="path">
-<h2>Experience</h2>
-<p class="lead">Proven track record delivering auditable data platforms for corporate and retail environments.</p>
-<div class="tl" id="jobs"></div>
-<p class="lead" id="edu" style="margin-top:20px;font-weight:600;color:var(--ink)"></p>
+  <h2>Experience</h2>
+  <p class="lead">Proven track record building auditable, high-performance data platforms for enterprise environments.</p>
+  <div class="tl" id="jobs"></div>
+  <p class="lead" id="edu" style="margin-top:24px; font-weight:600; color:var(--ink)"></p>
 </section>
 
 <section id="contact" class="contact">
-<h2>Have data challenges to solve?</h2>
-<p class="lead" style="margin-inline:auto" id="cLead">Open to Azure Data Engineer roles and enterprise projects. Let’s talk about what you are building.</p>
-<a class="big" id="mail">prakashiragavarapu2@gmail.com</a>
-<div class="bar" id="links"></div>
+  <h2>Have Data Challenges to Solve?</h2>
+  <p class="lead" style="margin-inline:auto" id="cLead">Open to Azure Data Engineer roles and complex enterprise pipeline engineering projects. Let's connect.</p>
+  <a class="big" id="mail">prakashiragavarapu2@gmail.com</a>
+  <div class="bar" id="links"></div>
 </section>
 
 <footer id="foot"></footer>
 
 <script>
-const DATA={
- name:"Sri Sai Prakash Iragavarapu",
- short:"Prakash",
- tagline:"Azure Data Engineer with ~4 years of experience building scalable ETL, data pipelines, and analytics solutions using Databricks, ADF, SQL, and PySpark.",
- email:"prakashiragavarapu2@gmail.com",
- phone:"+91 9110707422",
- links:[
-  {label:"LinkedIn",url:"https://www.linkedin.com/in/prakash-iragavarapu-024255401/"},
-  {label:"GitHub",url:"https://github.com/prakashdata23"}
- ],
- stats:[["~4 Yrs","Building scalable Azure data solutions"],["3","End-to-end Medallion projects"],["24/7","Self-healing pipeline reliability"]],
- layers:[
-  {id:"bronze",name:"Bronze: Ingest",text:"Informing raw ingestion—batch or high-frequency real-time streams—without data loss.",skills:["Azure Data Factory (ADF)","ADLS Gen2","Azure Event Hubs","Kafka","REST APIs","Databricks Workflows","MS Entra ID"]},
-  {id:"silver",name:"Silver: Clean",text:"Transforming, enforcing schemas, and applying business logic to build trusted datasets.",skills:["PySpark","Spark SQL","Delta Lake","SCD Type 2","Structured Streaming","GenAI Sentiment UDFs","Data Quality Routing"]},
-  {id:"gold",name:"Gold: Serve",text:"Modeling curated analytics assets for high-performance business intelligence.",skills:["Star Schema Design","Power BI + DAX","DirectQuery Mode","Databricks SQL Warehouse","Unity Catalog","ACID Compliance"]}
- ],
- projects:[
-  {
-   title:"Lifeline Live Healthcare Engine",
-   tag:"Real-time patient vitals streaming with dynamic emergency alerting",
-   stack:["ADF","Azure Databricks","Event Hubs","ADLS Gen2","Key Vault","Power BI","SQL DB"],
-   points:[
-    "Combined batch data from Azure SQL Database with high-frequency, real-time vital signs streamed via Azure Event Hubs into ADLS Gen2.",
-    "Built dynamic parameterized ADF pipelines using ForEach and Until (Self-Healing) activities for 24/7 reliability.",
-    "Engineered SCD Type 2 for patient history, stream-batch joins, and optimized Star Schema analytical views using Spark Merge, Vacuum, and Cache.",
-    "Implemented real-time emergency triggers (e.g., HR > 140) and automated data quality routing to isolate sensor errors.",
-    "Architected DirectQuery Power BI dashboards for real-time vitals monitoring."
-   ]
-  },
-  {
-   title:"Intelligent Banking Customer Insights Platform",
-   tag:"Transactional intelligence with GenAI feedback sentiment UDFs",
-   stack:["ADF","PySpark","Azure Databricks","ADLS Gen2","Key Vault","Power BI"],
-   points:[
-    "Extracted customer, transaction, and feedback data from Azure SQL Database into ADLS Gen2 using ADF Copy Activity.",
-    "Built jobs with 4 linked PySpark notebooks (Connection, Raw-to-Bronze, Bronze-to-Silver, Silver-to-Gold) triggered via ADF REST API.",
-    "Cleaned data using PySpark operations and incorporated GenAI sentiment analysis via UDFs to tag feedback as 'Positive' or 'Negative'.",
-    "Connected Databricks Gold views to Power BI via SQL Warehouse in DirectQuery mode for real-time reporting."
-   ]
-  },
-  {
-   title:"Enterprise E-Commerce, CRM & Marketing Analytics Platform",
-   tag:"Multi-Fact Star Schema with 60+ DAX measures across Sales, CRM Funnel & ROAS Analytics",
-   stack:["SQL Server","Power Query","VertiPaq Engine","DAX","Star Schema","Power BI Desktop"],
-   gallery:[
-    {name:"1. Platform Architecture", src:"https://lh3.googleusercontent.com/d/1BQ5IumwFfvpnK7Z7pEzQgXks6_9n5Qos"},
-    {name:"2. Data Model Schema", src:"https://lh3.googleusercontent.com/d/1PgDA6eNK-dJP2ljubxxnoC6jgYF6PJE2"},
-    {name:"3. Home Command Center", src:"https://lh3.googleusercontent.com/d/1aXaBxWQP5roWsi_mT3FALF5yZQEyEGYW"},
-    {name:"4. Executive Overview", src:"https://lh3.googleusercontent.com/d/1uHY4o71dT6A8bRw9743ePqXLFkbKaLAa"},
-    {name:"5. Sales & Finance", src:"https://lh3.googleusercontent.com/d/1WX0JYuLoWFfMJI6rexMD3-TgGiXQokuN"},
-    {name:"6. CRM & Sales Funnel", src:"https://lh3.googleusercontent.com/d/1-acNOPamNUOSuyzQqgOeCMAflMa8SkJK"},
-    {name:"7. Marketing & ROAS", src:"https://lh3.googleusercontent.com/d/1W9jiGoCa9tXFmqVAwwns_0nrQTkZYYAj"}
-   ],
-   points:[
-    "Architected a Multi-Fact Star Schema (3 Fact Tables: Sales, Marketing Ads, CRM Funnel; 8 Dimension Tables) with strict 1-to-Many cardinality.",
-    "Engineered end-to-end data pipelines from SQL Server into Power Query, performing deduplication, schema enforcement, and null handling.",
-    "Built a centralized measures repository with over 60 DAX calculations covering Net Profit Margin %, CAC, ROAS, MoM/YTD time intelligence, and Pareto analysis.",
-    "Designed an interactive 4-perspective Command Center featuring Executive Overview, Sales & Finance trends, CRM Funnel progression, and ROAS channels."
-   ]
-  }
- ],
- jobs:[
-  {
-   role:"Azure Data Engineer",
-   org:"SSL INFOTECH PVT LTD (Bangalore)",
-   when:"Logistics & Transit Solutions",
-   points:[
-    "Delivered tailored data engineering solutions for logistics and transit clients using Azure and Databricks, prioritizing data quality, schema enforcement, and ACID compliance.",
-    "Designed and built parameterized ADF pipelines and PySpark notebooks across Bronze, Silver, and Gold layers.",
-    "Implemented Delta Lake features (Merge, Vacuum, Time Travel) and Unity Catalog governance to ensure reliable, auditable platforms.",
-    "Followed standard Git-flow branching strategies for version control."
-   ]
-  },
-  {
-   role:"Data Engineer",
-   org:"Cognizant Technologies (Hyderabad)",
-   when:"Retail Data Analytics",
-   points:[
-    "Designed and developed ETL pipelines using SQL and Python (PySpark) to extract, clean, and transform large volumes of retail data.",
-    "Conducted comprehensive data analysis and built interactive Power BI dashboards and visualizations to translate complex retail metrics into actionable insights.",
-    "Automated data ingestion and transformation workflows, reducing manual processing effort and boosting pipeline efficiency.",
-    "Performed rigorous data quality validation and reconciliation between source and target systems to guarantee reliable datasets."
-   ]
-  }
- ],
- education:"Education: Bachelor of Engineering - Computer Science | Swarnandhra College of Engineering and Technology (SCET / JNTU-K) | 2016 - 2020"
+const DATA = {
+  name: "Prakash Iragavarapu",
+  short: "Prakash Iragavarapu",
+  tagline: "Azure Data Engineer with ~4 years of experience building scalable ETL pipelines, streaming engines, and analytics solutions using Azure Databricks, ADF, SQL, and PySpark.",
+  email: "prakashiragavarapu2@gmail.com",
+  phone: "+91 9110707422",
+  links: [
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/prakash-iragavarapu-024255401/" },
+    { label: "GitHub", url: "https://github.com/prakashdata23" }
+  ],
+  stats: [
+    ["~4 Yrs", "Building Azure Data Platforms"],
+    ["3+", "Enterprise Medallion Implementations"],
+    ["24/7", "Self-Healing Pipeline Uptime"]
+  ],
+  layers: [
+    { id: "bronze", name: "Bronze: Ingest", text: "Ingesting raw structured/unstructured streaming and batch data without data loss.", skills: ["Azure Data Factory (ADF)", "ADLS Gen2", "Azure Event Hubs", "Kafka", "REST APIs", "Databricks Workflows", "MS Entra ID"] },
+    { id: "silver", name: "Silver: Clean & Enrich", text: "Enforcing schema compliance, cleaning data, and applying SCD Type 2 logic for trusted datasets.", skills: ["PySpark", "Spark SQL", "Delta Lake", "SCD Type 2", "Structured Streaming", "GenAI Sentiment UDFs", "Data Quality Isolations"] },
+    { id: "gold", name: "Gold: Serve & Analyze", text: "Modeling analytical star-schema views for high-speed DirectQuery business intelligence.", skills: ["Star Schema Design", "Power BI + DAX", "DirectQuery Mode", "Databricks SQL Warehouse", "Unity Catalog", "ACID Compliance"] }
+  ],
+  projects: [
+    {
+      title: "Lifeline Live Healthcare Engine",
+      tag: "Real-time patient vitals streaming engine with emergency trigger alerts",
+      stack: ["ADF", "Azure Databricks", "Event Hubs", "ADLS Gen2", "Key Vault", "Power BI", "SQL DB"],
+      videos: [
+        { name: "Project Walkthrough & Solution Video", src: "https://drive.google.com/file/d/1yYmAJto4oLpuVPVMp5TAvTqke5JP6HyP/preview" },
+        { name: "How Data Pipelines Use Watermarks", src: "https://drive.google.com/file/d/1_lhRN5x024EXU79YBf7QhKoTDKTZnVfI/preview" }
+      ],
+      gallery: [
+        { name: "1. End-to-End System Architecture Blueprint", src: "https://lh3.googleusercontent.com/d/1NlHUYgNNe1mf4eWMSVHWnzRDh3c5o8Wd" },
+        { name: "2. ADF Bronze Layer - Ingestion & Self-Healing Architecture", src: "https://lh3.googleusercontent.com/d/1PkWd8_f31jJoIPf6IKzTdu5fXnTlHZ2k" },
+        { name: "3. Self-Healing Azure Ingestion Engine Flow", src: "https://lh3.googleusercontent.com/d/1K05t1g1xGb8se3ER0Bm-krC9CRf8OZ7Q" },
+        { name: "4. Hybrid Stream-Batch Ingestion & Enrichment (PySpark / Databricks)", src: "https://lh3.googleusercontent.com/d/1Wa9tRNSC9XfgSVLrUtWUl_pi_tpN6y7L" }
+      ],
+      points: [
+        "Combined batch data from Azure SQL Database with high-frequency, real-time vital signs streamed via Azure Event Hubs into ADLS Gen2.",
+        "Built dynamic parameterized ADF pipelines using ForEach and Until (Self-Healing) activities for 24/7 reliability.",
+        "Engineered SCD Type 2 for patient history, stream-batch joins, and optimized Star Schema analytical views using Spark Merge, Vacuum, and Cache.",
+        "Implemented real-time emergency triggers (e.g., HR > 140) and automated data quality routing to isolate sensor errors.",
+        "Architected DirectQuery Power BI dashboards for real-time vitals monitoring."
+      ]
+    },
+    {
+      title: "Intelligent Banking Customer Insights Platform",
+      tag: "Transactional platform featuring PySpark GenAI sentiment analysis",
+      stack: ["ADF", "PySpark", "Azure Databricks", "ADLS Gen2", "Key Vault", "Power BI"],
+      points: [
+        "Extracted customer, transaction, and feedback data from Azure SQL Database into ADLS Gen2 using ADF Copy Activity.",
+        "Built jobs with 4 linked PySpark notebooks (Connection, Raw-to-Bronze, Bronze-to-Silver, Silver-to-Gold) triggered via ADF REST API.",
+        "Cleaned data using PySpark operations and incorporated GenAI sentiment analysis via UDFs to tag feedback as 'Positive' or 'Negative'.",
+        "Connected Databricks Gold views to Power BI via SQL Warehouse in DirectQuery mode for real-time reporting."
+      ]
+    },
+    {
+      title: "Enterprise E-Commerce, CRM & Marketing Platform",
+      tag: "Multi-Fact Star Schema with 60+ DAX measures across Sales, Funnel & ROAS",
+      stack: ["SQL Server", "Power Query", "VertiPaq Engine", "DAX", "Star Schema", "Power BI Desktop"],
+      gallery: [
+        { name: "1. Platform Architecture", src: "https://lh3.googleusercontent.com/d/1BQ5IumwFfvpnK7Z7pEzQgXks6_9n5Qos" },
+        { name: "2. Data Model Schema", src: "https://lh3.googleusercontent.com/d/1PgDA6eNK-dJP2ljubxxnoC6jgYF6PJE2" }
+      ],
+      points: [
+        "Architected a Multi-Fact Star Schema (3 Fact Tables: Sales, Marketing Ads, CRM Funnel; 8 Dimension Tables) with strict 1-to-Many cardinality.",
+        "Engineered end-to-end data pipelines from SQL Server into Power Query, performing deduplication, schema enforcement, and null handling.",
+        "Built a centralized measures repository with over 60 DAX calculations covering Net Profit Margin %, CAC, ROAS, MoM/YTD time intelligence, and Pareto analysis.",
+        "Designed an interactive command center featuring Executive Overviews, Sales trends, CRM Funnel progression, and ROAS performance."
+      ]
+    }
+  ],
+  jobs: [
+    {
+      role: "Azure Data Engineer",
+      org: "SSL INFOTECH PVT LTD (Bangalore)",
+      when: "Logistics & Transit Solutions",
+      points: [
+        "Delivered tailored data engineering solutions for logistics and transit clients using Azure and Databricks, prioritizing data quality, schema enforcement, and ACID compliance.",
+        "Designed and built parameterized ADF pipelines and PySpark notebooks across Bronze, Silver, and Gold layers.",
+        "Implemented Delta Lake features (Merge, Vacuum, Time Travel) and Unity Catalog governance to ensure reliable, auditable platforms.",
+        "Followed standard Git-flow branching strategies for version control."
+      ]
+    },
+    {
+      role: "Data Engineer",
+      org: "Cognizant Technologies (Hyderabad)",
+      when: "Retail Data Analytics",
+      points: [
+        "Designed and developed ETL pipelines using SQL and Python (PySpark) to extract, clean, and transform large volumes of retail data.",
+        "Conducted comprehensive data analysis and built interactive Power BI dashboards and visualizations to translate complex retail metrics into actionable insights.",
+        "Automated data ingestion and transformation workflows, reducing manual processing effort and boosting pipeline efficiency.",
+        "Performed rigorous data quality validation and reconciliation between source and target systems to guarantee reliable datasets."
+      ]
+    }
+  ],
+  education: "Education: Bachelor of Engineering - Computer Science | SCET (JNTU-K) | 2016 - 2020"
 };
 
-const $=id=>document.getElementById(id),D=DATA;
-document.title=D.name+" · Azure Data Engineer";
-$("navName").textContent=D.short;$("hName").textContent=D.name;$("hTag").textContent=D.tagline;
-$("stats").innerHTML=D.stats.map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join("");
-$("tabs").innerHTML=D.layers.map((l,i)=>`<button class="tab ${l.id}" role="tab" aria-selected="${i==2}" data-i="${i}">${l.name}</button>`).join("");
+const $ = id => document.getElementById(id), D = DATA;
+document.title = D.name + " · Azure Data Engineer";
+$("navName").textContent = D.short;
+$("hName").textContent = D.name;
+$("hTag").textContent = D.tagline;
+$("stats").innerHTML = D.stats.map(s => `<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join("");
+$("tabs").innerHTML = D.layers.map((l, i) => `<button class="tab" role="tab" aria-selected="${i === 2}" data-i="${i}">${l.name}</button>`).join("");
 
-function showLayer(i){
- const l=D.layers[i];
- $("layer").innerHTML=`<p>${l.text}</p><div class="chips">${l.skills.map(s=>`<span>${s}</span>`).join("")}</div>`;
- document.querySelectorAll(".tab").forEach((t,j)=>t.setAttribute("aria-selected",j==i))
+function showLayer(i) {
+  const l = D.layers[i];
+  $("layer").innerHTML = `<p>${l.text}</p><div class="chips">${l.skills.map(s => `<span>${s}</span>`).join("")}</div>`;
+  document.querySelectorAll(".tab").forEach((t, j) => t.setAttribute("aria-selected", j === i));
 }
-$("tabs").onclick=e=>{const b=e.target.closest(".tab");if(b)showLayer(+b.dataset.i)};showLayer(2);
+$("tabs").onclick = e => { const b = e.target.closest(".tab"); if (b) showLayer(+b.dataset.i); };
+showLayer(2);
 
-/* Render Projects with Inline Stacked Large Images */
-$("projects").innerHTML=D.projects.map((p,idx)=>`
-  <article class="proj ${idx===2?'open':''}">
-    <button class="proj-head" aria-expanded="${idx===2}">
+$("projects").innerHTML = D.projects.map((p, idx) => `
+  <article class="proj ${idx === 0 ? 'open' : ''}">
+    <button class="proj-head" aria-expanded="${idx === 0}">
       <h3>${p.title}</h3>
       <div class="tag">${p.tag}</div>
-      <div class="chips">${p.stack.map(s=>`<span>${s}</span>`).join("")}</div>
+      <div class="chips">${p.stack.map(s => `<span>${s}</span>`).join("")}</div>
     </button>
     <div class="more">
-      <ul>${p.points.map(x=>`<li>${x}</li>`).join("")}</ul>
-      
+      <ul>${p.points.map(x => `<li>${x}</li>`).join("")}</ul>
+
+      ${p.videos ? `
+        <div class="stacked-gallery">
+          ${p.videos.map(v => `
+            <div class="image-item">
+              <span class="image-title">${v.name}</span>
+              <div class="video-container">
+                <iframe src="${v.src}" allow="autoplay" allowfullscreen></iframe>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      ` : ''}
+
       ${p.gallery ? `
         <div class="stacked-gallery">
           ${p.gallery.map(img => `
@@ -285,44 +528,57 @@ $("projects").innerHTML=D.projects.map((p,idx)=>`
   </article>
 `).join("");
 
-$("projects").onclick=e=>{
-  const b=e.target.closest("button.proj-head");
-  if(!b)return;
-  const a=b.parentElement;
+$("projects").onclick = e => {
+  const b = e.target.closest("button.proj-head");
+  if (!b) return;
+  const a = b.parentElement;
   a.classList.toggle("open");
-  b.setAttribute("aria-expanded",a.classList.contains("open"));
+  b.setAttribute("aria-expanded", a.classList.contains("open"));
 };
 
-$("jobs").innerHTML=D.jobs.map(j=>`<div class="job"><h3>${j.role} — ${j.org}</h3><small>${j.when}</small><ul>${j.points.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("");
-$("edu").textContent=D.education;
-$("mail").textContent=D.email;$("mail").href="mailto:"+D.email;
-$("links").innerHTML=D.links.map(l=>`<a class="btn" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join("")+(D.phone?`<a class="btn" href="tel:${D.phone.replace(/\s/g,"")}">${D.phone}</a>`:"");
-$("foot").textContent="© "+new Date().getFullYear()+" "+D.name;
+$("jobs").innerHTML = D.jobs.map(j => `<div class="job"><h3>${j.role} — ${j.org}</h3><small>${j.when}</small><ul>${j.points.map(x => `<li>${x}</li>`).join("")}</ul></div>`).join("");
+$("edu").textContent = D.education;
+$("mail").textContent = D.email;
+$("mail").href = "mailto:" + D.email;
+$("links").innerHTML = D.links.map(l => `<a class="btn" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join("") + (D.phone ? `<a class="btn" href="tel:${D.phone.replace(/\s/g, "")}">${D.phone}</a>` : "");
+$("foot").textContent = "© " + new Date().getFullYear() + " " + D.name + ". All rights reserved.";
 
-const sk=D.layers.flatMap(l=>l.skills);$("mqi").innerHTML=[...sk,...sk].map(t=>`<span>${t}</span>`).join("");
-addEventListener("pointermove",e=>{const g=$("glow");g.style.left=e.clientX+"px";g.style.top=e.clientY+"px"});
+const sk = D.layers.flatMap(l => l.skills);
+$("mqi").innerHTML = [...sk, ...sk].map(t => `<span>${t}</span>`).join("");
 
-const root=document.documentElement;
-try{const t=localStorage.getItem("theme");if(t)root.dataset.theme=t}catch(e){}
-$("theme").onclick=()=>{const dark=getComputedStyle(root).getPropertyValue("--bg").trim()=="#0a0e14";const n=dark?"light":"dark";root.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}};
+addEventListener("pointermove", e => { const g = $("glow"); g.style.left = e.clientX + "px"; g.style.top = e.clientY + "px"; });
 
-/* Flow Canvas */
+const root = document.documentElement;
+$("theme").onclick = () => {
+  const isDark = root.dataset.theme !== "light";
+  root.dataset.theme = isDark ? "light" : "dark";
+};
+
+/* Particle Data Stream Canvas */
 (function(){
- const c=$("flow"),x=c.getContext("2d");let w,h,P=[],rows=9;
- const still=matchMedia("(prefers-reduced-motion:reduce)").matches;
- function size(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;P=[];const n=Math.min(280,Math.floor(w/5));for(let i=0;i<n;i++)P.push({t:Math.random(),r:Math.floor(Math.random()*rows),y0:Math.random(),v:.0006+Math.random()*.0008,s:3+Math.random()*4,ph:Math.random()*6})}
- const mix=(a,b,k)=>a.map((v,i)=>Math.round(v+(b[i]-v)*k));
- function col(t){const dark=getComputedStyle(root).getPropertyValue("--bg").trim()=="#0a0e14";const B=[200,125,80],S=dark?[170,182,196]:[130,142,156],G=dark?[240,183,58]:[205,140,20];return t<.5?mix(B,S,t*2):mix(S,G,(t-.5)*2)}
- function draw(){
-  x.clearRect(0,0,w,h);x.globalAlpha=1;x.shadowBlur=0;
-  for(let r=0;r<rows;r++){const yy=(.12+.76*r/(rows-1))*h,g=x.createLinearGradient(w*.45,0,w,0);g.addColorStop(0,"rgba(240,183,58,0)");g.addColorStop(1,"rgba(217,173,79,.18)");x.strokeStyle=g;x.beginPath();x.moveTo(w*.45,yy);x.lineTo(w,yy);x.stroke()}
-  for(const p of P){if(!still)p.t+=p.v;if(p.t>1){p.t=0;p.y0=Math.random();p.r=Math.floor(Math.random()*rows)}
-   const k=Math.min(1,Math.max(0,(p.t-.35)/.5)),rowY=(.12+.76*p.r/(rows-1))*h,wob=Math.sin(p.t*14+p.ph)*40*(1-k),y=(p.y0*h)*(1-k)+rowY*k+wob;
-   const px=p.t*w,c2=col(p.t),sz=p.s*(1-.25*k);x.globalAlpha=.3+.4*k;x.shadowBlur=k*8;x.shadowColor=`rgb(${c2})`;x.fillStyle=`rgb(${c2})`;
-   x.save();x.translate(px,y);x.rotate((1-k)*(p.ph+p.t*6));x.fillRect(-sz/2,-sz/2,sz,sz*(1+k*1.6));x.restore()}
-  if(!still)requestAnimationFrame(draw)
- }
- size();addEventListener("resize",size);draw();if(still)setInterval(draw,1000);
+  const c = $("flow"), x = c.getContext("2d"); let w, h, P = [], rows = 8;
+  function size(){
+    w = c.width = c.offsetWidth; h = c.height = c.offsetHeight; P = [];
+    const n = Math.min(220, Math.floor(w / 6));
+    for(let i=0; i<n; i++) P.push({ t: Math.random(), r: Math.floor(Math.random()*rows), y0: Math.random(), v: .0006 + Math.random()*.0008, s: 3 + Math.random()*3, ph: Math.random()*6 });
+  }
+  function draw(){
+    x.clearRect(0,0,w,h);
+    const isLight = root.dataset.theme === "light";
+    for(let r=0; r<rows; r++){
+      const yy = (.15 + .7*r/(rows-1))*h;
+      x.strokeStyle = isLight ? "rgba(2, 132, 199, 0.12)" : "rgba(56, 189, 248, 0.08)";
+      x.beginPath(); x.moveTo(0, yy); x.lineTo(w, yy); x.stroke();
+    }
+    for(const p of P){
+      p.t += p.v; if(p.t > 1){ p.t = 0; p.r = Math.floor(Math.random()*rows); }
+      const rowY = (.15 + .7*p.r/(rows-1))*h, px = p.t * w;
+      x.fillStyle = isLight ? "#0284c7" : "#38bdf8"; x.globalAlpha = 0.2 + p.t * 0.5;
+      x.fillRect(px, rowY, p.s, p.s);
+    }
+    requestAnimationFrame(draw);
+  }
+  size(); addEventListener("resize", size); draw();
 })();
 </script>
 </body>
