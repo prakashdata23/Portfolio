@@ -18,9 +18,9 @@
   --mute: #94a3b8;
   --cyan: #38bdf8;
   --indigo: #818cf8;
-  --gold: #f59e0b;
-  --bronze: #f97316;
-  --silver: #38bdf8;
+  --gold: #ffd700;
+  --bronze: #cd7f32;
+  --silver: #c0c0c0;
   --title-gradient: linear-gradient(135deg, #ffffff 30%, #a5f3fc 70%, #38bdf8 100%);
   --nav-title: #ffffff;
   box-sizing: border-box;
@@ -37,7 +37,7 @@
   --indigo: #4f46e5;
   --gold: #d97706;
   --bronze: #ea580c;
-  --silver: #0284c7;
+  --silver: #64748b;
   --title-gradient: linear-gradient(135deg, #0f172a 30%, #0369a1 70%, #0284c7 100%);
   --nav-title: #0f172a;
 }
@@ -113,7 +113,6 @@ nav a:hover { color: var(--ink); }
 .hero a { pointer-events: auto; }
 .hero-content { max-width: 900px; margin-bottom: 20px; }
 
-/* Dynamic Name Heading */
 .hero h1 {
   font-family: 'Space Grotesque', 'Inter', sans-serif;
   font-size: clamp(36px, 5.5vw, 68px);
@@ -213,9 +212,10 @@ h2::after { content: ""; display: block; width: 48px; height: 4px; margin-top: 1
 .proj h3 { font-size: 22px; font-weight: 700; display: flex; justify-content: space-between; gap: 16px; align-items: center; }
 .proj h3::after { content: '+'; font-size: 24px; color: var(--cyan); transition: transform .25s; font-family: 'JetBrains Mono', monospace; }
 .proj.open h3::after { transform: rotate(45deg); }
-.proj .tag { color: var(--mute); margin: 6px 0 16px; font-size: 15px; }
+.proj .tag { color: var(--ink); margin: 8px 0 12px; font-size: 16px; font-weight: 600; }
+.proj .sub-desc { color: var(--mute); font-size: 15px; margin-bottom: 14px; line-height: 1.5; }
 
-.more { display: none; padding: 0 28px 28px; }
+.more { display: none; padding: 0 28px 28px; border-top: 1px dashed var(--panel-border); margin-top: 8px; padding-top: 20px; }
 .proj.open .more { display: block; }
 .more ul { margin: 0 0 24px; padding-left: 20px; }
 .more li { margin-bottom: 10px; color: var(--mute); font-size: 15px; }
@@ -306,11 +306,11 @@ footer { text-align: center; color: var(--mute); font-size: 14px; padding: 32px 
 .pill i { width: 8px; height: 8px; border-radius: 50%; background: #10b981; animation: pl 2s infinite; }
 @keyframes pl { 0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.6); } 70%, 100% { box-shadow: 0 0 0 10px transparent; } }
 
-/* Marquee Skills */
+/* Marquee Skills - Fixed Left-to-Right Scrolling */
 .mq { overflow: hidden; padding: 18px 0; border-bottom: 1px solid var(--panel-border); background: var(--panel); -webkit-mask-image: linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent); mask-image: linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent); }
 .mq div { display: flex; width: max-content; animation: mq 40s linear infinite; }
 .mq span { font-size: 16px; font-weight: 700; color: var(--mute); white-space: nowrap; padding-right: 36px; font-family: 'JetBrains Mono', monospace; }
-@keyframes mq { to { transform: translateX(-50%); } }
+@keyframes mq { from { transform: translateX(-50%); } to { transform: translateX(0%); } }
 </style>
 </head>
 <body>
@@ -401,7 +401,8 @@ const DATA = {
   projects: [
     {
       title: "Lifeline Live Healthcare Engine",
-      tag: "Real-time patient vitals streaming engine with emergency trigger alerts",
+      tag: "Mission-Critical 24/7 Real-Time Vitals Monitoring & Autonomous Self-Healing Pipeline",
+      laymanDesc: "Think of this as an ICU emergency monitoring system built in the cloud. It collects patient heart rates in real-time and merges them with past medical records. If a patient's vitals cross a dangerous threshold, it instantly triggers an alert. Even better, if network errors happen, the system automatically heals and retries itself without crashing.",
       stack: ["ADF", "Azure Databricks", "Event Hubs", "ADLS Gen2", "Key Vault", "Power BI", "SQL DB"],
       videos: [
         { name: "Project Walkthrough & Solution Video", src: "https://drive.google.com/file/d/1yYmAJto4oLpuVPVMp5TAvTqke5JP6HyP/preview" },
@@ -423,8 +424,18 @@ const DATA = {
     },
     {
       title: "Intelligent Banking Customer Insights Platform",
-      tag: "Transactional platform featuring PySpark GenAI sentiment analysis",
+      tag: "Automated Transactional Analytics with GenAI Sentiment Intelligence",
+      laymanDesc: "Think of this as a smart digital assistant for banks that automatically reads customer feedback and transactions. Using AI, it scans comments and tells bank managers instantly whether customers are happy or unhappy, displaying everything on live dashboards.",
       stack: ["ADF", "PySpark", "Azure Databricks", "ADLS Gen2", "Key Vault", "Power BI"],
+      videos: [
+        { name: "How AI Turns Banking Chaos Into Clarity", src: "https://drive.google.com/file/d/1h0raYz-16PRzsPiIM1kG7V4HDD-00Kwu/preview" },
+        { name: "How AI Decodes Messy Customer Feedback", src: "https://drive.google.com/file/d/1OsTYEF6UhT5gnIx-B3Ms9hfXfQGvIXe3/preview" },
+        { name: "How Azure Secures Banking Data", src: "https://drive.google.com/file/d/1PHRF4rwU7HZKI3sLoKl3bINklL0eC05X/preview" }
+      ],
+      gallery: [
+        { name: "1. End-to-End Banking Architecture & ADF Workflow", src: "https://lh3.googleusercontent.com/d/1JaOLyMcKO6ZJomdrebf9WOnXQac8_vMW" },
+        { name: "2. GenAI Sentiment Analysis Pipeline & AI Enrichment", src: "https://lh3.googleusercontent.com/d/1SHQKxgOCZM8Uo47z2hhRY91YsB9XjCwy" }
+      ],
       points: [
         "Extracted customer, transaction, and feedback data from Azure SQL Database into ADLS Gen2 using ADF Copy Activity.",
         "Built jobs with 4 linked PySpark notebooks (Connection, Raw-to-Bronze, Bronze-to-Silver, Silver-to-Gold) triggered via ADF REST API.",
@@ -434,7 +445,8 @@ const DATA = {
     },
     {
       title: "Enterprise E-Commerce, CRM & Marketing Platform",
-      tag: "Multi-Fact Star Schema with 60+ DAX measures across Sales, Funnel & ROAS",
+      tag: "Unified Multi-Fact Star Schema Command Center with 60+ DAX KPIs",
+      laymanDesc: "Think of this as the ultimate business command center for online retail. It pulls messy data from sales, marketing ad spend, and customer support, cleans it up, and shows executives over 60 pre-calculated metrics on a single interactive screen.",
       stack: ["SQL Server", "Power Query", "VertiPaq Engine", "DAX", "Star Schema", "Power BI Desktop"],
       gallery: [
         { name: "1. Platform Architecture", src: "https://lh3.googleusercontent.com/d/1BQ5IumwFfvpnK7Z7pEzQgXks6_9n5Qos" },
@@ -496,9 +508,11 @@ $("projects").innerHTML = D.projects.map((p, idx) => `
     <button class="proj-head" aria-expanded="${idx === 0}">
       <h3>${p.title}</h3>
       <div class="tag">${p.tag}</div>
+      <p class="sub-desc">${p.laymanDesc}</p>
       <div class="chips">${p.stack.map(s => `<span>${s}</span>`).join("")}</div>
     </button>
     <div class="more">
+      <h4 style="color:var(--cyan); margin-bottom:12px; font-size:16px;">Technical Implementation Details:</h4>
       <ul>${p.points.map(x => `<li>${x}</li>`).join("")}</ul>
 
       ${p.videos ? `
