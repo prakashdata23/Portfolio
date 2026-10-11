@@ -254,23 +254,68 @@ h2::after { content: ""; display: block; width: 48px; height: 4px; margin-top: 1
   background: #000;
 }
 
-/* Responsive Embed Video Container */
-.video-container {
+/* Video Thumbnail Card with Play Overlay */
+.video-thumb-card {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-  height: 0;
-  overflow: hidden;
+  display: block;
   border-radius: 8px;
+  overflow: hidden;
   border: 1px solid var(--panel-border);
+  text-decoration: none;
   background: #000;
 }
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
+.video-thumb-card img {
   width: 100%;
-  height: 100%;
-  border: 0;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+  opacity: 0.85;
+}
+.video-thumb-card:hover img {
+  transform: scale(1.02);
+  opacity: 1;
+}
+.video-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 12, 20, 0.4);
+  transition: background 0.3s ease;
+}
+.video-thumb-card:hover .video-play-overlay {
+  background: rgba(8, 12, 20, 0.2);
+}
+.play-icon-btn {
+  width: 64px;
+  height: 64px;
+  background: var(--cyan);
+  color: #080c14;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 900;
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.5);
+  transition: transform 0.2s ease;
+  padding-left: 4px;
+}
+.video-thumb-card:hover .play-icon-btn {
+  transform: scale(1.1);
+}
+.play-label {
+  margin-top: 10px;
+  background: rgba(15, 23, 42, 0.85);
+  color: var(--ink);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  border: 1px solid var(--panel-border);
 }
 
 /* Timeline / Jobs */
@@ -306,9 +351,9 @@ footer { text-align: center; color: var(--mute); font-size: 14px; padding: 32px 
 .pill i { width: 8px; height: 8px; border-radius: 50%; background: #10b981; animation: pl 2s infinite; }
 @keyframes pl { 0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.6); } 70%, 100% { box-shadow: 0 0 0 10px transparent; } }
 
-/* Marquee Skills - Fixed Left-to-Right Scrolling */
+/* Marquee Skills - Left to Right Smooth Scrolling */
 .mq { overflow: hidden; padding: 18px 0; border-bottom: 1px solid var(--panel-border); background: var(--panel); -webkit-mask-image: linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent); mask-image: linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent); }
-.mq div { display: flex; width: max-content; animation: mq 40s linear infinite; }
+.mq div { display: flex; width: max-content; animation: mq 35s linear infinite; }
 .mq span { font-size: 16px; font-weight: 700; color: var(--mute); white-space: nowrap; padding-right: 36px; font-family: 'JetBrains Mono', monospace; }
 @keyframes mq { from { transform: translateX(-50%); } to { transform: translateX(0%); } }
 </style>
@@ -405,8 +450,8 @@ const DATA = {
       laymanDesc: "Think of this as an ICU emergency monitoring system built in the cloud. It collects patient heart rates in real-time and merges them with past medical records. If a patient's vitals cross a dangerous threshold, it instantly triggers an alert. Even better, if network errors happen, the system automatically heals and retries itself without crashing.",
       stack: ["ADF", "Azure Databricks", "Event Hubs", "ADLS Gen2", "Key Vault", "Power BI", "SQL DB"],
       videos: [
-        { name: "Project Walkthrough & Solution Video", src: "https://drive.google.com/file/d/1yYmAJto4oLpuVPVMp5TAvTqke5JP6HyP/preview" },
-        { name: "How Data Pipelines Use Watermarks", src: "https://drive.google.com/file/d/1_lhRN5x024EXU79YBf7QhKoTDKTZnVfI/preview" }
+        { name: "Project Walkthrough & Solution Video", fileId: "1yYmAJto4oLpuVPVMp5TAvTqke5JP6HyP", src: "https://drive.google.com/file/d/1yYmAJto4oLpuVPVMp5TAvTqke5JP6HyP/view?usp=sharing" },
+        { name: "How Data Pipelines Use Watermarks", fileId: "1_lhRN5x024EXU79YBf7QhKoTDKTZnVfI", src: "https://drive.google.com/file/d/1_lhRN5x024EXU79YBf7QhKoTDKTZnVfI/view?usp=sharing" }
       ],
       gallery: [
         { name: "1. End-to-End System Architecture Blueprint", src: "https://lh3.googleusercontent.com/d/1NlHUYgNNe1mf4eWMSVHWnzRDh3c5o8Wd" },
@@ -428,9 +473,9 @@ const DATA = {
       laymanDesc: "Think of this as a smart digital assistant for banks that automatically reads customer feedback and transactions. Using AI, it scans comments and tells bank managers instantly whether customers are happy or unhappy, displaying everything on live dashboards.",
       stack: ["ADF", "PySpark", "Azure Databricks", "ADLS Gen2", "Key Vault", "Power BI"],
       videos: [
-        { name: "How AI Turns Banking Chaos Into Clarity", src: "https://drive.google.com/file/d/1h0raYz-16PRzsPiIM1kG7V4HDD-00Kwu/preview" },
-        { name: "How AI Decodes Messy Customer Feedback", src: "https://drive.google.com/file/d/1OsTYEF6UhT5gnIx-B3Ms9hfXfQGvIXe3/preview" },
-        { name: "How Azure Secures Banking Data", src: "https://drive.google.com/file/d/1PHRF4rwU7HZKI3sLoKl3bINklL0eC05X/preview" }
+        { name: "How AI Turns Banking Chaos Into Clarity", fileId: "1h0raYz-16PRzsPiIM1kG7V4HDD-00Kwu", src: "https://drive.google.com/file/d/1h0raYz-16PRzsPiIM1kG7V4HDD-00Kwu/view?usp=sharing" },
+        { name: "How AI Decodes Messy Customer Feedback", fileId: "1OsTYEF6UhT5gnIx-B3Ms9hfXfQGvIXe3", src: "https://drive.google.com/file/d/1OsTYEF6UhT5gnIx-B3Ms9hfXfQGvIXe3/view?usp=sharing" },
+        { name: "How Azure Secures Banking Data", fileId: "1PHRF4rwU7HZKI3sLoKl3bINklL0eC05X", src: "https://drive.google.com/file/d/1PHRF4rwU7HZKI3sLoKl3bINklL0eC05X/view?usp=sharing" }
       ],
       gallery: [
         { name: "1. End-to-End Banking Architecture & ADF Workflow", src: "https://lh3.googleusercontent.com/d/1JaOLyMcKO6ZJomdrebf9WOnXQac8_vMW" },
@@ -520,9 +565,13 @@ $("projects").innerHTML = D.projects.map((p, idx) => `
           ${p.videos.map(v => `
             <div class="image-item">
               <span class="image-title">${v.name}</span>
-              <div class="video-container">
-                <iframe src="${v.src}" allow="autoplay" allowfullscreen></iframe>
-              </div>
+              <a href="${v.src}" target="_blank" rel="noopener" class="video-thumb-card">
+                <img src="https://lh3.googleusercontent.com/d/${v.fileId}" alt="${v.name}" loading="lazy" referrerpolicy="no-referrer">
+                <div class="video-play-overlay">
+                  <div class="play-icon-btn">▶</div>
+                  <span class="play-label">Click to Play Video Demonstration</span>
+                </div>
+              </a>
             </div>
           `).join("")}
         </div>
@@ -557,8 +606,9 @@ $("mail").href = "mailto:" + D.email;
 $("links").innerHTML = D.links.map(l => `<a class="btn" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join("") + (D.phone ? `<a class="btn" href="tel:${D.phone.replace(/\s/g, "")}">${D.phone}</a>` : "");
 $("foot").textContent = "© " + new Date().getFullYear() + " " + D.name + ". All rights reserved.";
 
+/* Dynamic Skills Marquee - Continuous Seamless Loop */
 const sk = D.layers.flatMap(l => l.skills);
-$("mqi").innerHTML = [...sk, ...sk].map(t => `<span>${t}</span>`).join("");
+$("mqi").innerHTML = [...sk, ...sk, ...sk, ...sk].map(t => `<span>${t}</span>`).join("");
 
 addEventListener("pointermove", e => { const g = $("glow"); g.style.left = e.clientX + "px"; g.style.top = e.clientY + "px"; });
 
